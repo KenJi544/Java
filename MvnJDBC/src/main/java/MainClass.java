@@ -75,11 +75,15 @@ public class MainClass {
 	}
 	
 	public static void main(String args[]) {
+		Scanner scanner = new Scanner(System.in);
 		MainClass mc = new MainClass();
+		System.out.println("Id-ul elementului cautat:");
+		int id = scanner.nextInt();
 		if (!(mc.getList().isEmpty())) {
 			mc.afisare();
-			mc.secvential(9);
-			mc.binarySearch(9);
+			mc.secvential(id);
+			mc.binarySearch(id);
+		scanner.close();
 		}
 	}
 }
