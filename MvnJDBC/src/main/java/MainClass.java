@@ -26,7 +26,7 @@ public class MainClass {
 	}
 	
 	public void secvential(int id) {
-		int count = 0;
+		int count = 1;
 		for(Automobil i : masini) {
 			if(i.getId() == id) break;
 			count++;
@@ -37,21 +37,23 @@ public class MainClass {
 	}
 	
 	public void binarySearch(int id) {
-		int count = 0;
-		int stg = masini.get(0).getId();
-		int drt = masini.get(masini.size() - 1).getId();
-		while(stg >= drt) {
-			int mij = stg + (drt - stg)/2;
-			if (masini.get(mij).getId() == id)
-				break;
-			if (masini.get(mij).getId() > id) {
+		int count = 1;
+		int stg = 0;
+		int drt = masini.size() - 1;
+		if (id > drt) {
+			System.err.println("nu exista");
+			return;
+		}
+		int mij = (stg + drt)/2;
+		while(stg <= drt && masini.get(mij - 1).getId() != id) {
+			mij = (stg + drt)/2;
+			if (masini.get(mij - 1).getId() < id) {
 				stg = mij + 1;
-				count++;
 			}
 			else {
 				drt = mij - 1;
-				count++;
 			}
+			count++;
 		}
 		if(count == masini.size())
 			System.err.println("elementul cu id " + id + " nu a fost gasit");
@@ -80,8 +82,10 @@ public class MainClass {
 		System.out.println("Id-ul elementului cautat:");
 		int id = scanner.nextInt();
 		if (!(mc.getList().isEmpty())) {
-			mc.afisare();
+			//mc.afisare();
+			System.out.println();
 			mc.secvential(id);
+			System.out.println();
 			mc.binarySearch(id);
 		scanner.close();
 		}
